@@ -8,6 +8,7 @@ __pycache__/
 
 # Ignore pkl files
 *.txt
+!requirements.txt
 
 # C extensions
 *.so
