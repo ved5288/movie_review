@@ -8,6 +8,8 @@ from pytube import YouTube
 from urllib.parse import urlparse, parse_qs
 from moviepy.editor import *
 
+openai.api_key = st.secrets["OPENAI_API_KEY"]
+
 # Transcripe MP3 Audio function
 def transscribe_audio(file_path):
     file_size = os.path.getsize(file_path)
