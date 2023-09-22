@@ -65,12 +65,12 @@ def generate_transcript(video_id):
 
 def order_youtube_results_in_relevance(search_results):
     youtube_videos = {}
-    input_to_gpt = "Following are the youtube video ids, titles and the number of views received for a movie review. Reply the video ids in the order of relevance based on whether the title relates to review or indicates some other content inside the youtube video. \n\n"
+    input_to_gpt = "Following are the youtube video ids, titles and the number of views received for a movie review. Reply the video ids in comma separated way in the order of relevance based on whether the title relates to review or indicates some other content inside the youtube video. \n\n"
     for result in search_results:
         youtube_videos[result.video_id] = result
         input_to_gpt += "{\nId: " + result.video_id + ",\nTitle: " + result.title + ",\nViews: " + str(result.views) +"\n},\n" 
 
-    input_to_gpt += "\nAnswer: "
+    input_to_gpt += "\nAnswer in comma separated: "
     
     llm = OpenAI(openai_api_key=st.secrets["OPENAI_API_KEY"])
     response = llm.predict(input_to_gpt)
@@ -79,7 +79,6 @@ def order_youtube_results_in_relevance(search_results):
     response = response.replace(".","")
     response = response.split(",")
 
-    print(response)
     relevant_yt_order = []
     for ytid in response:
         print(ytid, len(ytid))
