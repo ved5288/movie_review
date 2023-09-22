@@ -20,7 +20,7 @@ openai.api_key = st.secrets["OPENAI_API_KEY"]
 
 grid = []
 
-NUM_OF_RELEVANT_REVIEWS = 1
+NUM_OF_RELEVANT_REVIEWS = 5
 
 # Transcripe MP3 Audio function
 def transscribe_audio(file_path):
